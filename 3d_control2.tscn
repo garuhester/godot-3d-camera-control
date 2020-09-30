@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://CameraControl2.gd" type="Script" id=2]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+
+[sub_resource type="ConcavePolygonShape" id=3]
+data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.403922, 0.67451, 0.768627, 1 )
+
+[sub_resource type="SphereMesh" id=6]
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 1, 0.407843, 0.407843, 1 )
+
+[node name="3d" type="Spatial"]
+
+[node name="bg" type="MeshInstance" parent="."]
+transform = Transform( 5.45487, 0, 0, 0, 5.45487, 0, 0, 0, 5.45487, 0, 0.0604076, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="bg"]
+
+[node name="CollisionShape" type="CollisionShape" parent="bg/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="cube" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68989, 1.06041, -0.544731 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.702551, -0.342789, 0.623633, 0, 0.87634, 0.481693, -0.711634, -0.338413, 0.615673, 0, 3.99812, 0 )
+shadow_enabled = true
+directional_shadow_normal_bias = 0.0
+directional_shadow_bias_split_scale = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="privot" type="Spatial" parent="."]
+
+[node name="CameraControl2" type="Camera" parent="privot"]
+transform = Transform( 1, 5.96046e-08, 2.98023e-08, 0, 1, -3.72529e-08, 0, -2.23517e-08, 1, 0, 0, 0 )
+far = 3000.0
+script = ExtResource( 2 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="privot"]
+transform = Transform( 0.268128, 9.06499e-09, 0, 9.06499e-09, 0.268128, -4.53251e-09, 0, -4.53251e-09, 0.268128, 0, 0, 0 )
+visible = false
+cast_shadow = 0
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
